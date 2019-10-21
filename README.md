@@ -25,65 +25,15 @@ To generate a different image, go into World.cpp. Find the build() function and 
 
 ## Included Features
 This ray tracer implementes the following features which are common in various ray tracing applications
-* BRDFS: Bidirectional Reflectance Distribution Functions. These are equations that simulate various types of reflectance (when light reflects off an object). 
-    * Glossy Specular: 
-    * Lambertian: 
-    * Perfect Specular: 
-    * SV Lambertian: 
-* BTDFS: Bidirectional Transmittance Distribution Functions. These are equations that simulate various types of transmittance (when light passes through an object).
-    * Perfect Transmitter: 
-* Cameras: 
-    * Orthographic: 
-    * Pinhole: 
-* Geometric Objects:
-    * BBox: 
-    * BVH: 
-    * Compound: 
-    * CSG: 
-    * Deformed: 
-    * FastTriMesh: 
-    * Instance: 
-    * Plane: 
-    * Rectangle: 
-    * SmoothMesh: 
-    * Smooth Triangle: 
-    * Sphere: 
-    * Triangle: 
-    * Triangle Mesh: 
-* Lights:
-    * Ambient: 
-    * Area Light: 
-    * Directional: 
-    * Point: 
-* Mappings: 
-    * Rectangular Map:
-    * Spherical Map:
-* Materials: 
-    * Emmissive: 
-    * Matte: 
-    * Phong: 
-    * Reflective: 
-    * SV Matte: 
-    * Transparent:
-* Samplers: 
-    * Jittered:
-* Textures:
-    * Checker: 
-    * Constant Color: 
-    * Image Texture: 
-    * Noise: 
-* Tracers: 
-    * Area Lighting: 
-    * Ray Cast: 
-    * Whitted: 
-* Utilities: 
-    * Constants
-    * Image: 
-    * Maths: 
-    * Matrix: 
-    * ObjParser: 
-    * Ray: 
-    * ShadeRec: 
-    * Vector3D: 
-* World: 
-    * ViewPlane: 
+* BRDFS: Glossy Specular, Lambertian, Perfect Specular, SV Lambertian
+* BTDFS: Perfect Transmitter
+* Cameras: Orthographic, Pinhole
+* Geometric Objects: BBox, BVH, Compound, CSG, Deformed, FastTriMesh, Instance, Plane, Rectangle, SmoothMesh, Smooth Triangle, Sphere, Triangle, Triangle Mesh
+* Lights: Ambient, Area Light, Directional, Point
+* Mappings: Rectangular Map, Spherical Map
+* Materials: Emmissive, Matte, Phong, Reflective, SV Matte, Transparent
+* Samplers: Jittered
+* Textures: Checker, Constant Color, Image Texture, Noise
+* Tracers: Area Lighting, Ray Cast, Whitted
+* Utilities: Constants, Image, Maths, Matrix, ObjParser, Ray, ShadeRec, Vector3D
+* World: ViewPlane
