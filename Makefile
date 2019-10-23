@@ -8,6 +8,7 @@ INCLUDE		:= \
 	-I ./Source \
 	-I ./Source/BRDFS \
 	-I ./Source/BTDFS \
+	-I ./Source/Builds \
 	-I ./Source/Cameras \
 	-I ./Source/GeometricObjects \
 	-I ./Source/Lights \
@@ -22,6 +23,7 @@ SRC 		:= \
 	$(wildcard Source/*.cpp) \
 	$(wildcard Source/BRDFS/*.cpp) \
 	$(wildcard Source/BTDFS/*.cpp) \
+	$(wildcard Source/Builds/*.cpp) \
 	$(wildcard Source/Cameras/*.cpp) \
 	$(wildcard Source/GeometricObjects/*.cpp) \
 	$(wildcard Source/Lights/*.cpp) \

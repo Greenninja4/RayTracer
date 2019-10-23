@@ -74,6 +74,7 @@ class World{
         void texture_build(void);
         void checker_build(void);
         void glass_face_build(void);
+        void build1(void);
 
         // Animation Functions
         void animate(void); 

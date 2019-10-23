@@ -35,5 +35,5 @@ This ray tracer implementes the following features which are common in various r
 * Samplers: Jittered
 * Textures: Checker, Constant Color, Image Texture, Noise
 * Tracers: Area Lighting, Ray Cast, Whitted
-* Utilities: Constants, Image, Maths, Matrix, ObjParser, Ray, ShadeRec, Vector3D
+* Utilities: Constants, Image, Maths, Matrix, Ray, ShadeRec, Vector3D
 * World: ViewPlane
