@@ -1,61 +1,45 @@
-CXX 		:= clang++-6.0
-CXXFLAGS	:= -Wall -Werror
-BUILD		:= ./Build
-OBJ_DIR		:= $(BUILD)/Objects
-DEP_DIR		:= $(BUILD)/Dependencies
-EXE			:= tracer
-INCLUDE		:= \
-	-I ./Source \
-	-I ./Source/BRDFS \
-	-I ./Source/BTDFS \
-	-I ./Source/Builds \
-	-I ./Source/Cameras \
-	-I ./Source/GeometricObjects \
-	-I ./Source/Lights \
-	-I ./Source/Mappings \
-	-I ./Source/Materials \
-	-I ./Source/Samplers \
-	-I ./Source/Textures \
-	-I ./Source/Tracers \
-	-I ./Source/Utilities \
-	-I ./Source/World
-SRC 		:= \
-	$(wildcard Source/*.cpp) \
-	$(wildcard Source/BRDFS/*.cpp) \
-	$(wildcard Source/BTDFS/*.cpp) \
-	$(wildcard Source/Builds/*.cpp) \
-	$(wildcard Source/Cameras/*.cpp) \
-	$(wildcard Source/GeometricObjects/*.cpp) \
-	$(wildcard Source/Lights/*.cpp) \
-	$(wildcard Source/Mappings/*.cpp) \
-	$(wildcard Source/Materials/*.cpp) \
-	$(wildcard Source/Samplers/*.cpp) \
-	$(wildcard Source/Textures/*.cpp) \
-	$(wildcard Source/Tracers/*.cpp) \
-	$(wildcard Source/Utilities/*.cpp) \
-	$(wildcard Source/World/*.cpp)
-OBJECTS		:= $(SRC:%.cpp=$(OBJ_DIR)/%.o)
+# Makefile found at https://spin.atomicobject.com/2016/08/26/makefile-c-projects/
+# Modified by adding CC := clang++-6.0
 
-all: build $(EXE)
+TARGET_EXEC ?= tracer
 
-$(OBJ_DIR)/%.o: %.cpp
-	@mkdir -p $(@D)
-	$(CXX) $(CXXFLAGS) $(INCLUDE) -o $@ -c $<
+BUILD_DIR ?= ./Build
+SRC_DIRS ?= ./Source
 
-$(EXE): $(OBJECTS)
-	@mkdir -p $(@D)
-	$(CXX) $(CXXFLAGS) $(INCLUDE) -o $(EXE) $(OBJECTS)
+SRCS := $(shell find $(SRC_DIRS) -name *.cpp -or -name *.c -or -name *.s)
+OBJS := $(SRCS:%=$(BUILD_DIR)/%.o)
+DEPS := $(OBJS:.o=.d)
 
-.PHONY: all build clean debug release
+INC_DIRS := $(shell find $(SRC_DIRS) -type d)
+INC_FLAGS := $(addprefix -I,$(INC_DIRS))
 
-build:
-	@mkdir -p $(OBJ_DIR)
+CC := clang++-6.0
+CPPFLAGS ?= $(INC_FLAGS) -MMD -MP
 
-debug: CXXFLAGS += -DDEBUG -g
-debug: all
+$(BUILD_DIR)/$(TARGET_EXEC): $(OBJS)
+	$(CC) $(OBJS) -o $@ $(LDFLAGS)
 
-release: CXXFLAGS += -O2
-release: all
+# assembly
+$(BUILD_DIR)/%.s.o: %.s
+	$(MKDIR_P) $(dir $@)
+	$(AS) $(ASFLAGS) -c $< -o $@
+
+# c source
+$(BUILD_DIR)/%.c.o: %.c
+	$(MKDIR_P) $(dir $@)
+	$(CC) $(CPPFLAGS) $(CFLAGS) -c $< -o $@
+
+# c++ source
+$(BUILD_DIR)/%.cpp.o: %.cpp
+	$(MKDIR_P) $(dir $@)
+	$(CXX) $(CPPFLAGS) $(CXXFLAGS) -c $< -o $@
+
+
+.PHONY: clean
 
 clean:
-	-@rm -rvf $(OBJ_DIR)/*
+	$(RM) -r $(BUILD_DIR)
+
+-include $(DEPS)
+
+MKDIR_P ?= mkdir -p

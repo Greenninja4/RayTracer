@@ -50,8 +50,12 @@
 #include "ConstantColor.h"
 #include "Checker.h"
 #include "Noise.h"
-
+// Builds
 #include "Builds.h"
+#include "Build0.h"
+#include "Build1.h"
+#include "Build2.h"
+#include "Build3.h"
 
 using namespace std;
 
@@ -237,5 +241,8 @@ void World::build(void){
     //texture_build();
     //checker_build();
     // glass_face_build();
-    build1();
+    // build_0();
+    // build_1();
+    // build_2();
+    build_3();
 }

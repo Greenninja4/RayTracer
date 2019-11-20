@@ -10,7 +10,7 @@
 #define GREEN Vector3D(0, 1, 0)
 #define BLUE Vector3D(0, 0, 1)
 #define CYAN Vector3D(0, 1, 1)
-#define MAGENTA Vector3D(0, 1, 1)
+#define MAGENTA Vector3D(1, 0, 1)
 #define YELLOW Vector3D(1, 1, 0)
 
 #define KEPSILON 0.0000000001

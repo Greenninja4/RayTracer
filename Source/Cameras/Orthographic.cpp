@@ -60,9 +60,9 @@ void Orthographic::render_scene(const World& w){
 
     for (int r = 0; r < vp.vres; r++){
         for (int c = 0; c < vp.hres; c++){
-            x = vp.pixelSize * (c - 0.5 * (vp.hres - 1.0));
-            y = vp.pixelSize * (r - 0.5 * (vp.vres - 1.0));
-            //zw = eye.z;
+            x = vp.pixelSize * (c - 0.5 * (vp.hres - 1.0) + eye.x);
+            y = vp.pixelSize * (r - 0.5 * (vp.vres - 1.0) + eye.y);
+            zw = eye.z;
             ray.o = Vector3D(x, y, zw);
             // cout << "Origin: " << ray.o.x << ", " << ray.o.y << ", " << ray.o.z << ", " << endl;
             // cout << "Direction: " << ray.d.x << ", " << ray.d.y << ", " << ray.d.z << ", " << endl;
